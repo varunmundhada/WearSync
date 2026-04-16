@@ -1,4 +1,4 @@
-# User_Registration (WearSync)
+# WearSync
 
 A full-stack **user registration/login + profile** project with a simple frontend and a secure backend API.  
 The backend supports **JWT authentication**, **encrypted user profile storage**, and **wearable data sync** including **real-time streaming via WebSockets**.
