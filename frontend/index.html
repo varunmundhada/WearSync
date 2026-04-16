@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WearSync — Login & Signup</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Auth Section -->
+    <div id="auth-section">
+      <div class="auth-card">
+        <div class="logo">
+          <span class="logo-icon">⌚</span>
+          <h1>WearSync</h1>
+          <p class="tagline">Sync your wearable. Secure your health.</p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="tab-switcher">
+          <button class="tab active" data-tab="login">Login</button>
+          <button class="tab" data-tab="signup">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form">
+          <div class="form-group">
+            <label for="login-email">Email</label>
+            <input type="email" id="login-email" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+          <div id="login-error" class="error-msg" role="alert"></div>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="auth-form hidden">
+          <div class="form-group">
+            <label for="signup-name">Full Name</label>
+            <input type="text" id="signup-name" placeholder="John Doe" required minlength="2" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="signup-email">Email</label>
+            <input type="email" id="signup-email" placeholder="you@example.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" placeholder="Min 8 chars, upper+lower+number" required minlength="8" autocomplete="new-password">
+          </div>
+          <div class="form-group">
+            <label for="signup-confirm">Confirm Password</label>
+            <input type="password" id="signup-confirm" placeholder="Repeat your password" required autocomplete="new-password">
+          </div>
+          <button type="submit" class="btn btn-primary">Create Account</button>
+          <div id="signup-error" class="error-msg" role="alert"></div>
+          <div id="signup-success" class="success-msg" role="status"></div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Dashboard Section (shown after login) -->
+    <div id="dashboard-section" class="hidden">
+      <header class="dashboard-header">
+        <div class="header-left">
+          <span class="logo-icon-sm">⌚</span>
+          <h2>WearSync Dashboard</h2>
+        </div>
+        <div class="header-right">
+          <span id="user-greeting"></span>
+          <button id="logout-btn" class="btn btn-outline">Logout</button>
+        </div>
+      </header>
+
+      <main class="dashboard-content">
+        <!-- Profile Card -->
+        <section class="card">
+          <h3>👤 Your Profile</h3>
+          <form id="profile-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profile-age">Age</label>
+                <input type="number" id="profile-age" min="1" max="150" placeholder="25">
+              </div>
+              <div class="form-group">
+                <label for="profile-gender">Gender</label>
+                <select id="profile-gender">
+                  <option value="">Select</option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                  <option value="prefer_not_to_say">Prefer not to say</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="profile-height">Height (cm)</label>
+                <input type="number" id="profile-height" min="30" max="300" step="0.1" placeholder="170">
+              </div>
+              <div class="form-group">
+                <label for="profile-weight">Weight (kg)</label>
+                <input type="number" id="profile-weight" min="1" max="700" step="0.1" placeholder="70">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="profile-blood">Blood Type</label>
+              <select id="profile-blood">
+                <option value="">Select</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="profile-activity">Activity Level</label>
+              <select id="profile-activity">
+                <option value="">Select</option>
+                <option value="sedentary">Sedentary</option>
+                <option value="light">Lightly Active</option>
+                <option value="moderate">Moderately Active</option>
+                <option value="active">Active</option>
+                <option value="very_active">Very Active</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+            <div id="profile-msg" class="success-msg" role="status"></div>
+          </form>
+        </section>
+
+        <!-- Wearable Sync Card -->
+        <section class="card">
+          <h3>📱 Wearable Sync</h3>
+          <form id="wearable-form">
+            <div class="form-group">
+              <label for="device-type">Device Type</label>
+              <select id="device-type" required>
+                <option value="">Select device</option>
+                <option value="Apple Watch">Apple Watch</option>
+                <option value="Fitbit">Fitbit</option>
+                <option value="Garmin">Garmin</option>
+                <option value="Samsung Galaxy Watch">Samsung Galaxy Watch</option>
+                <option value="Xiaomi Mi Band">Xiaomi Mi Band</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="sync-hr">Heart Rate (bpm)</label>
+                <input type="number" id="sync-hr" min="0" max="300" placeholder="72">
+              </div>
+              <div class="form-group">
+                <label for="sync-steps">Steps</label>
+                <input type="number" id="sync-steps" min="0" placeholder="8500">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="sync-calories">Calories</label>
+                <input type="number" id="sync-calories" min="0" step="0.1" placeholder="450">
+              </div>
+              <div class="form-group">
+                <label for="sync-sleep">Sleep (hours)</label>
+                <input type="number" id="sync-sleep" min="0" max="24" step="0.1" placeholder="7.5">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="sync-spo2">Blood Oxygen (%)</label>
+                <input type="number" id="sync-spo2" min="0" max="100" step="0.1" placeholder="98">
+              </div>
+              <div class="form-group">
+                <label for="sync-temp">Temperature (°C)</label>
+                <input type="number" id="sync-temp" min="30" max="45" step="0.1" placeholder="36.6">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Sync Data</button>
+            <div id="sync-msg" class="success-msg" role="status"></div>
+          </form>
+        </section>
+
+        <!-- Real-Time WebSocket Streaming -->
+        <section class="card">
+          <h3>⚡ Real-Time Stream (WebSocket)</h3>
+          <div class="ws-status-row">
+            <span id="ws-status" class="ws-badge ws-disconnected">Disconnected</span>
+            <button id="ws-connect-btn" class="btn btn-primary btn-sm">Connect</button>
+            <button id="ws-disconnect-btn" class="btn btn-outline btn-sm hidden">Disconnect</button>
+          </div>
+          <div class="form-row" style="margin-top: 1rem;">
+            <div class="form-group">
+              <label for="ws-device">Device</label>
+              <select id="ws-device">
+                <option value="Apple Watch">Apple Watch</option>
+                <option value="Fitbit">Fitbit</option>
+                <option value="Garmin">Garmin</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="ws-hr">Heart Rate</label>
+              <div class="input-btn-row">
+                <input type="number" id="ws-hr" min="0" max="300" placeholder="72">
+                <button type="button" id="ws-send-hr" class="btn btn-primary btn-sm" disabled>Send</button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ws-steps">Steps</label>
+              <div class="input-btn-row">
+                <input type="number" id="ws-steps" min="0" placeholder="150">
+                <button type="button" id="ws-send-steps" class="btn btn-primary btn-sm" disabled>Send</button>
+              </div>
+            </div>
+          </div>
+          <button type="button" id="ws-simulate-btn" class="btn btn-outline btn-sm" disabled style="margin-top: 0.5rem;">▶ Simulate Live Stream</button>
+          <div id="ws-log" class="ws-log">
+            <p class="muted">Connect to start streaming real-time data.</p>
+          </div>
+        </section>
+
+        <!-- Latest Wearable Data -->
+        <section class="card">
+          <h3>📊 Latest Wearable Data</h3>
+          <div id="latest-data">
+            <p class="muted">No wearable data synced yet.</p>
+          </div>
+          <button id="refresh-data-btn" class="btn btn-outline" style="margin-top: 1rem;">Refresh Data</button>
+        </section>
+
+        <!-- Encrypted vs Decrypted Viewer -->
+        <section class="card">
+          <h3>🔐 Encrypted Data Viewer</h3>
+          <p class="muted" style="margin-bottom: 1rem;">See how your data is stored encrypted in the database vs. the readable decrypted version.</p>
+          <div class="viewer-tabs">
+            <button class="viewer-tab active" data-view="profile">Profile Data</button>
+            <button class="viewer-tab" data-view="wearable">Wearable Data</button>
+          </div>
+          <div class="split-pane">
+            <div class="pane">
+              <div class="pane-header">🔓 Decrypted (Readable)</div>
+              <pre id="decrypted-pane" class="pane-content"><span class="muted">Click "Load Data" to view.</span></pre>
+            </div>
+            <div class="pane">
+              <div class="pane-header">🔒 Encrypted (Stored in DB)</div>
+              <pre id="encrypted-pane" class="pane-content"><span class="muted">Click "Load Data" to view.</span></pre>
+            </div>
+          </div>
+          <button id="load-encrypted-btn" class="btn btn-primary" style="margin-top: 1rem;">Load Data</button>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/websocket.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
